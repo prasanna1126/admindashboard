@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ColorsComponent } from './colors.component';
-import { TypographyComponent } from './typography.component';
+import { BeautyTipsComponent } from './beauty-tips.component';
+import { TestimonialsComponent } from './testimonials.component';
 
 const routes: Routes = [
   {
@@ -12,17 +12,17 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'colors',
-        component: ColorsComponent,
+        path: 'beauty-tips',
+        component: BeautyTipsComponent,
         data: {
-          title: 'Colors'
+          title: 'Beauty-Tips'
         }
       },
       {
-        path: 'typography',
-        component: TypographyComponent,
+        path: 'testimonials',
+        component: TestimonialsComponent,
         data: {
-          title: 'Typography'
+          title: 'Testimonials'
         }
       }
     ]
