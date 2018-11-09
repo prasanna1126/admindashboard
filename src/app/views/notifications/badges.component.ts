@@ -27,10 +27,7 @@ updatePromotion(val) {
   console.log(val)
   var data = {
     description: val.description,
-    fullname: val.fullname,
-    likes: val.likes,
     video: val.video,
-    testimonial_id: val.testimonial_id,
     user_id: val.user_id,
     video_thumbnail: val.video_thumbnail
   }

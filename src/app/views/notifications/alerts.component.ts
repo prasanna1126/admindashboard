@@ -35,7 +35,6 @@ updatePromotion(val) {
   console.log(val)
   var data = {
     comments: val.comments,
-    fullname: val.fullname,
     rating_1: val.rating_1,
     rating_2: val.rating_2,
     rating_3: val.rating_3,
@@ -43,9 +42,6 @@ updatePromotion(val) {
     rating_5: val.rating_5,
     recomment:val.recomment,
     status: val.status,
-    testimonial_createddate: val.testimonial_createddate,
-    testimonial_id: val.testimonial_id,
-    testimonial_modifydate: val.testimonial_modifydate,
     uploadpic: val.uploadpic,
     user_id: val.user_id
   }
