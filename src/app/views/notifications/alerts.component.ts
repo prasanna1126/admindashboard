@@ -1,90 +1,74 @@
-import { Component, SecurityContext, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { AlertConfig } from 'ngx-bootstrap/alert';
-
-// such override allows to keep some initial values
-
-export function getAlertConfig(): AlertConfig {
-  return Object.assign(new AlertConfig(), { type: 'success' });
-}
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TestmonialsService } from "../../services/TestmonialsService";
+import {PaginatorModule} from 'primeng/paginator';
+import { Input, ViewEncapsulation  } from '@angular/core';
 @Component({
   templateUrl: 'alerts.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styles: [
-    `
-  .alert-md-local {
-    background-color: #009688;
-    border-color: #00695C;
-    color: #fff;
-  }
-  `
-  ],
-  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
+  styles: ['.pager li.btn:active { box-shadow: none; }'],
+  encapsulation: ViewEncapsulation.None
 })
-export class AlertsComponent {
 
-  constructor(sanitizer: DomSanitizer) {
-    this.alertsHtml = this.alertsHtml.map((alert: any) => ({
-      type: alert.type,
-      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
-    }));
+export class AlertsComponent implements OnInit {
+  totalItems: number;
+  categorysData: any;
+  editData: any = [];
+  bigCurrentPage: number = 1;
+  constructor(private router: Router,private service: TestmonialsService) { }
+  backToDashBoard() {
+    this.router.navigate(['reports'])
   }
-  dismissible = true;
-  alerts: any = [
-    {
-      type: 'success',
-      msg: `You successfully read this important alert message.`
-    },
-    {
-      type: 'info',
-      msg: `This alert needs your attention, but it's not super important.`
-    },
-    {
-      type: 'danger',
-      msg: `Better check yourself, you're not looking too good.`
-    }
-  ];
+  ngOnInit() {
+  this.service.getWrittenTestmonials().subscribe(response => {
+    this.categorysData = response.json().data;
+    console.log(this.categorysData)
+  });
 
-  alertsHtml: any = [
-    {
-      type: 'success',
-      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
-    },
-    {
-      type: 'info',
-      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
-    },
-    {
-      type: 'danger',
-      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
-    }
-  ];
-
-  index = 0;
-  messages = [
-    'You successfully read this important alert message.',
-    'Now this text is different from what it was before. Go ahead and click the button one more time',
-    'Well done! Click reset button and you\'ll see the first message'
-  ];
-
-  alertsDismiss: any = [];
-
-  reset(): void {
-    this.alerts = this.alerts.map((alert: any) => Object.assign({}, alert));
+}
+editPromotion(data, index) {
+  data.index = index;
+  this.editData = data;
+  this.totalItems=this.editData.length;
+  console.log(this.editData.length)
+}
+updatePromotion(val) {
+  console.log(val)
+  var data = {
+    comments: val.comments,
+    fullname: val.fullname,
+    rating_1: val.rating_1,
+    rating_2: val.rating_2,
+    rating_3: val.rating_3,
+    rating_4: val.rating_4,
+    rating_5: val.rating_5,
+    recomment:val.recomment,
+    status: val.status,
+    testimonial_createddate: val.testimonial_createddate,
+    testimonial_id: val.testimonial_id,
+    testimonial_modifydate: val.testimonial_modifydate,
+    uploadpic: val.uploadpic,
+    user_id: val.user_id
   }
-
-  changeText() {
-    if (this.messages.length - 1 !== this.index) {
-      this.index++;
-    }
+  this.service.editWrittenTestmonials(data).subscribe();
+}
+delatePromotion(val) {
+  console.log(val)
+  var data = {
+    comments: val.comments,
+    fullname: val.fullname,
+    rating_1: val.rating_1,
+    rating_2: val.rating_2,
+    rating_3: val.rating_3,
+    rating_4: val.rating_4,
+    rating_5: val.rating_5,
+    recomment:val.recomment,
+    status: 0,
+    testimonial_createddate: val.testimonial_createddate,
+    testimonial_id: val.testimonial_id,
+    testimonial_modifydate: val.testimonial_modifydate,
+    uploadpic: val.uploadpic,
+    user_id: val.user_id
   }
-
-  add(): void {
-    this.alertsDismiss.push({
-      type: 'info',
-      msg: `This alert will be closed in 5 seconds (added: ${new Date().toLocaleTimeString()})`,
-      timeout: 5000
-    });
-  }
+  this.service.editWrittenTestmonials(data).subscribe();
+}
 }

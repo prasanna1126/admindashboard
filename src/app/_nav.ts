@@ -1,12 +1,51 @@
 export const navItems = [
   {
-    name: 'Dashboard',
+    name: 'Users',
     url: '/dashboard',
     icon: 'icon-speedometer',
     badge: {
       variant: 'info',
       text: 'NEW'
     }
+  },
+  {
+    name: 'Testmonials',
+    url: '/notifications',
+   icon: 'icon-bell',
+    children: [
+      {
+        name: 'Written Testmonials',
+       url: '/notifications/alerts',
+       icon: 'icon-bell'
+     },
+      {
+       name: 'Video Testmonials',
+        url: '/notifications/badges',
+         icon: 'icon-bell'
+      },
+    ]
+   },
+   {
+    name: 'Refferal Rewards',
+    url: '/buttons',
+    icon: 'icon-cursor',
+    children: [
+      {
+        name: 'User History',
+        url: '/buttons/buttons',
+        icon: 'icon-cursor'
+      },
+      {
+        name: 'Activities',
+        url: '/buttons/dropdowns',
+        icon: 'icon-cursor'
+      },
+      {
+        name: 'Perks',
+        url: '/buttons/brand-buttons',
+        icon: 'icon-cursor'
+      }
+    ]
   },
   // {
   //   title: true,
@@ -17,11 +56,11 @@ export const navItems = [
     url: '/theme/beauty-tips',
     icon: 'icon-user-female'
   },
-  {
-    name: 'Testmonials',
-    url: '/theme/testimonials',
-    icon: 'icon-star'
-  },
+  // {
+  //   name: 'Testmonials',
+  //   url: '/theme/testimonials',
+  //   icon: 'icon-star'
+  // },
   // {
   //   title: true,
   //   name: 'Components'
@@ -88,28 +127,7 @@ export const navItems = [
       }
     ]
   },
-  {
-    name: 'Refferal Rewards',
-    url: '/buttons',
-    icon: 'icon-cursor',
-    children: [
-      {
-        name: 'Buttons',
-        url: '/buttons/buttons',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Dropdowns',
-        url: '/buttons/dropdowns',
-        icon: 'icon-cursor'
-      },
-      {
-        name: 'Brand Buttons',
-        url: '/buttons/brand-buttons',
-        icon: 'icon-cursor'
-      }
-    ]
-  },
+ 
   // {
   //   name: 'Charts',
   //   url: '/charts',
@@ -150,28 +168,7 @@ export const navItems = [
   //     }
   //   ]
   // },
-  // {
-  //   name: 'Notifications',
-  //   url: '/notifications',
-  //   icon: 'icon-bell',
-  //   children: [
-  //     {
-  //       name: 'Alerts',
-  //       url: '/notifications/alerts',
-  //       icon: 'icon-bell'
-  //     },
-  //     {
-  //       name: 'Badges',
-  //       url: '/notifications/badges',
-  //       icon: 'icon-bell'
-  //     },
-  //     {
-  //       name: 'Modals',
-  //       url: '/notifications/modals',
-  //       icon: 'icon-bell'
-  //     }
-  //   ]
-  // },
+  
   // {
   //   name: 'Widgets',
   //   url: '/widgets',

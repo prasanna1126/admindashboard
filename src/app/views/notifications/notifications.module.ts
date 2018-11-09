@@ -14,10 +14,14 @@ import { ModalsComponent } from './modals.component';
 
 // Notifications Routing
 import { NotificationsRoutingModule } from './notifications-routing.module';
+import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    PaginatorModule,
     NotificationsRoutingModule,
     AlertModule.forRoot(),
     ModalModule.forRoot()
