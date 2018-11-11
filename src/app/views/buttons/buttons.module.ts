@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { ButtonsComponent } from './buttons.component';
 import { BrandButtonsComponent } from './brand-buttons.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 // Dropdowns Component
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { DropdownsComponent } from './dropdowns.component';
@@ -18,6 +18,7 @@ import { ButtonsRoutingModule } from './buttons-routing.module';
   imports: [
     CommonModule,
     ButtonsRoutingModule,
+    NgxPaginationModule,
     BsDropdownModule.forRoot(),
     FormsModule
   ],
