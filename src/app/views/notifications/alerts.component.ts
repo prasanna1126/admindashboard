@@ -1,20 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, SecurityContext, ViewEncapsulation,OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
-import { TestmonialsService } from "../../services/TestmonialsService";
-import {PaginatorModule} from 'primeng/paginator';
-import { Input, ViewEncapsulation  } from '@angular/core';
+import { TestmonialsService } from '../../services/TestmonialsService';
+
+// such override allows to keep some initial values
+
+export function getAlertConfig(): AlertConfig {
+  return Object.assign(new AlertConfig(), { type: 'success' });
+}
 @Component({
   templateUrl: 'alerts.component.html',
-  styles: ['.pager li.btn:active { box-shadow: none; }'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  styles: [
+    `
+  .alert-md-local {
+    background-color: #009688;
+    border-color: #00695C;
+    color: #fff;
+  }
+  `
+  ],
+  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
 
 export class AlertsComponent implements OnInit {
+  alerts: any[] = [{
+    type: 'success',
+    msg: `Testmonial Details Updated Successfully`,
+    timeout: 5000
+  }];
   totalItems: number;
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
-  constructor(private router: Router,private service: TestmonialsService) { }
+  constructor(private router: Router,private service: TestmonialsService ,sanitizer: DomSanitizer) {
+    this.alertsHtml = this.alertsHtml.map((alert: any) => ({
+      type: alert.type,
+      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
+    }));
+   }
+   alertsHtml: any = [
+    {
+      type: 'success',
+      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
+    },
+    {
+      type: 'info',
+      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
+    },
+    {
+      type: 'danger',
+      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
+    }
+  ];
   backToDashBoard() {
     this.router.navigate(['reports'])
   }
@@ -46,6 +85,11 @@ updatePromotion(val) {
     user_id: val.user_id
   }
   this.service.editWrittenTestmonials(data).subscribe();
+  this.alerts.push({
+    type: 'success',
+    msg: `Testmonial Details Updated Successfully`,
+    timeout: 5000
+  });
 }
 delatePromotion(val) {
   console.log(val)

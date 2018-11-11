@@ -129,7 +129,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of categorysData; let i=index">
+              <tr *ngFor="let item of categorysData | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>{{item.fullname}}</td>
                 <td>{{item.comments}}</td>
                 <td>{{item.recomment}}</td>
@@ -146,6 +146,7 @@
               </tr>
             </tbody>
           </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
           <!-- <div class="col-xs-12 col-12">
             <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
                         previousText="&lsaquo;" nextText="&rsaquo;" [boundaryLinks]="true"></pagination>

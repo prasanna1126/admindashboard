@@ -8,6 +8,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { HttpModule } from '@angular/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -41,12 +42,14 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { RegisterComponent } from './views/register/register.component';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppAsideModule,
+    AlertModule,
+    NgxPaginationModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
     AppHeaderModule,

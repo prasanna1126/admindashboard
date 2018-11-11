@@ -1,6 +1,6 @@
 export const navItems = [
   {
-    name: 'Users',
+    name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
     badge: {
@@ -8,6 +8,11 @@ export const navItems = [
       text: 'NEW'
     }
   },
+  {
+    name: 'Users',
+    url: '/charts',
+   icon: 'icon-pie-chart'
+ },
   {
     name: 'Testmonials',
     url: '/notifications',
@@ -128,11 +133,7 @@ export const navItems = [
     ]
   },
  
-  // {
-  //   name: 'Charts',
-  //   url: '/charts',
-  //   icon: 'icon-pie-chart'
-  // },
+ 
   // {
   //   name: 'Icons',
   //   url: '/icons',
