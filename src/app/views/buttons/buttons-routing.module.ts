@@ -13,21 +13,21 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'buttons',
+        path: 'user-activities',
         component: ButtonsComponent,
         data: {
           title: 'Buttons'
         }
       },
       {
-        path: 'dropdowns',
+        path: 'user-history',
         component: DropdownsComponent,
         data: {
           title: 'Dropdowns'
         }
       },
       {
-        path: 'brand-buttons',
+        path: 'perks',
         component: BrandButtonsComponent,
         data: {
           title: 'Brand buttons'

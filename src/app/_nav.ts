@@ -6,44 +6,44 @@ export const navItems = [
   },
   {
     name: 'Users',
-    url: '/charts',
+    url: '/users-list',
    icon: 'icon-pie-chart'
  },
   {
     name: 'Testmonials',
-    url: '/notifications',
+    url: '/testmonials',
    icon: 'icon-bell',
     children: [
       {
         name: 'Written Testmonials',
-       url: '/notifications/alerts',
+       url: '/testmonials/written',
        icon: 'icon-bell'
      },
       {
        name: 'Video Testmonials',
-        url: '/notifications/badges',
+        url: '/testmonials/video',
          icon: 'icon-bell'
       },
     ]
    },
    {
     name: 'Refferal Rewards',
-    url: '/buttons',
+    url: '/refferal-rewards',
     icon: 'icon-cursor',
     children: [
       {
         name: 'User Activities',
-        url: '/buttons/buttons',
+        url: '/refferal-rewards/user-activities',
         icon: 'icon-cursor'
       },
       {
         name: 'User History',
-        url: '/buttons/dropdowns',
+        url: '/refferal-rewards/user-history',
         icon: 'icon-cursor'
       },
       {
         name: 'Perks',
-        url: '/buttons/brand-buttons',
+        url: '/refferal-rewards/perks',
         icon: 'icon-cursor'
       }
     ]
@@ -55,7 +55,7 @@ export const navItems = [
   },
   {
     name: 'Mind Body Coupons',
-     url: '/widgets',
+     url: '/mind-body-coupons',
     icon: 'icon-calculator',
   },
   {

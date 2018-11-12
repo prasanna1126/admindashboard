@@ -9,21 +9,21 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Notifications'
+      title: 'Testmonials'
     },
     children: [
       {
-        path: 'alerts',
+        path: 'written',
         component: AlertsComponent,
         data: {
-          title: 'Alerts'
+          title: 'Written'
         }
       },
       {
-        path: 'badges',
+        path: 'video',
         component: BadgesComponent,
         data: {
-          title: 'Badges'
+          title: 'Video'
         }
       },
       {

@@ -55,11 +55,11 @@ export const routes: Routes = [
         loadChildren: './views/base/base.module#BaseModule'
       },
       {
-        path: 'buttons',
+        path: 'refferal-rewards',
         loadChildren: './views/buttons/buttons.module#ButtonsModule'
       },
       {
-        path: 'charts',
+        path: 'users-list',
         loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
       },
       {
@@ -71,7 +71,7 @@ export const routes: Routes = [
         loadChildren: './views/icons/icons.module#IconsModule'
       },
       {
-        path: 'notifications',
+        path: 'testmonials',
         loadChildren: './views/notifications/notifications.module#NotificationsModule'
       },
       {
@@ -79,7 +79,7 @@ export const routes: Routes = [
         loadChildren: './views/theme/theme.module#ThemeModule'
       },
       {
-        path: 'widgets',
+        path: 'mind-body-coupons',
         loadChildren: './views/widgets/widgets.module#WidgetsModule'
       }
     ]
