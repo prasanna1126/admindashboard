@@ -4,12 +4,18 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { WidgetsComponent } from './widgets.component';
 import { WidgetsRoutingModule } from './widgets-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     WidgetsRoutingModule,
     ChartsModule,
-    BsDropdownModule
+    FormsModule,
+    CommonModule,
+    BsDropdownModule,
+    NgxPaginationModule
   ],
   declarations: [ WidgetsComponent ]
 })

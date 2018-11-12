@@ -1,391 +1,112 @@
-import { Component } from '@angular/core';
-import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { Component, SecurityContext, ViewEncapsulation,OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AlertConfig } from 'ngx-bootstrap/alert';
+import { Router } from '@angular/router';
+import { RefferalRewardsService } from '../../services/refferal-rewards.service';
+
+// such override allows to keep some initial values
+
+export function getAlertConfig(): AlertConfig {
+  return Object.assign(new AlertConfig(), { type: 'success' });
+}
 
 @Component({
-  templateUrl: 'widgets.component.html'
+  templateUrl: 'widgets.component.html',
+  encapsulation: ViewEncapsulation.None,
+  styles: [
+    `
+  .alert-md-local {
+    background-color: #009688;
+    border-color: #00695C;
+    color: #fff;
+  }
+  `
+  ],
+  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
-export class WidgetsComponent {
-
-  // lineChart1
-  public lineChart1Data: Array<any> = [
+export class WidgetsComponent implements OnInit {
+  alerts: any[] = [{
+    type: 'success',
+    msg: `Testmonial Details Updated Successfully`,
+    timeout: 5000
+  }];
+  totalItems: number;
+  categorysData: any;
+  editData: any = [];
+  bigCurrentPage: number = 1;
+  constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+    this.alertsHtml = this.alertsHtml.map((alert: any) => ({
+      type: alert.type,
+      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
+    }));
+   }
+   ngOnInit() {
+    this.service.getMindBodyCoupons().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData)
+    });
+  
+  }
+   alertsHtml: any = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
+      type: 'success',
+      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
     },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 40 - 5,
-          max: 84 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart1Colours: Array<any> = [
-    { // grey
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart1Legend = false;
-  public lineChart1Type = 'line';
-
-  // lineChart2
-  public lineChart2Data: Array<any> = [
     {
-      data: [1, 18, 9, 17, 34, 22, 11],
-      label: 'Series A'
-    }
-  ];
-  public lineChart2Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart2Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
+      type: 'info',
+      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
     },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 1 - 5,
-          max: 34 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        tension: 0.00001,
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart2Colours: Array<any> = [
-    { // grey
-      backgroundColor: getStyle('--info'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart2Legend = false;
-  public lineChart2Type = 'line';
-
-
-  // lineChart3
-  public lineChart3Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40],
-      label: 'Series A'
+      type: 'danger',
+      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
-  public lineChart3Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart3Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
+  editPromotion(data, index) {
+    data.index = index;
+    this.editData = data;
+    this.totalItems=this.editData.length;
+    console.log(this.editData.length)
+  }
+  updatePromotion(val) {
+    console.log(val)
+    var data = {
+      comments: val.comments,
+      rating_1: val.rating_1,
+      rating_2: val.rating_2,
+      rating_3: val.rating_3,
+      rating_4: val.rating_4,
+      rating_5: val.rating_5,
+      recomment:val.recomment,
+      status: val.status,
+      uploadpic: val.uploadpic,
+      user_id: val.user_id
     }
-  };
-  public lineChart3Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+    //this.service.editWrittenTestmonials(data).subscribe();
+    this.alerts.push({
+      type: 'success',
+      msg: `Testmonial Details Updated Successfully`,
+      timeout: 5000
+    });
+  }
+  delatePromotion(val) {
+    console.log(val)
+    var data = {
+      comments: val.comments,
+      fullname: val.fullname,
+      rating_1: val.rating_1,
+      rating_2: val.rating_2,
+      rating_3: val.rating_3,
+      rating_4: val.rating_4,
+      rating_5: val.rating_5,
+      recomment:val.recomment,
+      status: 0,
+      testimonial_createddate: val.testimonial_createddate,
+      testimonial_id: val.testimonial_id,
+      testimonial_modifydate: val.testimonial_modifydate,
+      uploadpic: val.uploadpic,
+      user_id: val.user_id
     }
-  ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
-
-
-  // barChart1
-  public barChart1Data: Array<any> = [
-    {
-      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, 40],
-      label: 'Series A'
-    }
-  ];
-  public barChart1Labels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'];
-  public barChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false,
-        barPercentage: 0.6,
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    legend: {
-      display: false
-    }
-  };
-  public barChart1Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderWidth: 0
-    }
-  ];
-  public barChart1Legend = false;
-  public barChart1Type = 'bar';
-
-  // lineChart4
-  public lineChart4Data: Array<any> = [
-    {
-      data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9],
-      label: 'Series A'
-    }
-  ];
-  public lineChart4Labels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  public lineChart4Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false,
-        points: false,
-      }],
-      yAxes: [{
-        display: false,
-      }]
-    },
-    elements: { point: { radius: 0 } },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart4Colours: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      borderWidth: 2
-    }
-  ];
-  public lineChart4Legend = false;
-  public lineChart4Type = 'line';
-
-
-  // barChart2
-  public barChart2Data: Array<any> = [
-    {
-      data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9],
-      label: 'Series A'
-    }
-  ];
-  public barChart2Labels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  public barChart2Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false,
-        barPercentage: 0.6,
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          beginAtZero: true,
-        }
-      }]
-    },
-    legend: {
-      display: false
-    }
-  };
-  public barChart2Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(0,0,0,.2)',
-      borderWidth: 0
-    }
-  ];
-  public barChart2Legend = false;
-  public barChart2Type = 'bar';
-
-
-  // barChart3
-  public barChart3Data: Array<any> = [
-    {
-      data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9],
-      label: 'Series A'
-    }
-  ];
-  public barChart3Labels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  public barChart3Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    legend: {
-      display: false
-    }
-  };
-  public barChart3Primary: Array<any> = [
-    {
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'transparent',
-      borderWidth: 1
-    }
-  ];
-  public barChart3Danger: Array<any> = [
-    {
-      backgroundColor: getStyle('--danger'),
-      borderColor: 'transparent',
-      borderWidth: 1
-    }
-  ];
-  public barChart3Success: Array<any> = [
-    {
-      backgroundColor: getStyle('--success'),
-      borderColor: 'transparent',
-      borderWidth: 1
-    }
-  ];
-  public barChart3Legend = false;
-  public barChart3Type = 'bar';
-
-
-  // lineChart5
-  public lineChart5Data: Array<any> = [
-    {
-      data: [65, 59, 84, 84, 51, 55, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart5Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart5Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false,
-        points: false,
-      }],
-      yAxes: [{
-        display: false,
-      }]
-    },
-    elements: { point: { radius: 0 } },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart5Info: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      borderColor: getStyle('--info'),
-      borderWidth: 2
-    }
-  ];
-  public lineChart5Success: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      borderColor: getStyle('--info'),
-      borderWidth: 2
-    }
-  ];
-  public lineChart5Warning: Array<any> = [
-    {
-      backgroundColor: 'transparent',
-      borderColor: getStyle('--warning'),
-      borderWidth: 2
-    }
-  ];
-  public lineChart5Legend = false;
-  public lineChart5Type = 'line';
+    //this.service.editWrittenTestmonials(data).subscribe();
+  }
+  
 }

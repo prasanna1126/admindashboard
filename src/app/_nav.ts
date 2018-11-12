@@ -2,11 +2,7 @@ export const navItems = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
+    icon: 'icon-speedometer'
   },
   {
     name: 'Users',
@@ -36,12 +32,12 @@ export const navItems = [
     icon: 'icon-cursor',
     children: [
       {
-        name: 'User History',
+        name: 'User Activities',
         url: '/buttons/buttons',
         icon: 'icon-cursor'
       },
       {
-        name: 'Activities',
+        name: 'User History',
         url: '/buttons/dropdowns',
         icon: 'icon-cursor'
       },
@@ -52,24 +48,16 @@ export const navItems = [
       }
     ]
   },
-  // {
-  //   title: true,
-  //   name: 'Theme'
-  // },
   {
     name: 'Beauty-Tips',
     url: '/theme/beauty-tips',
     icon: 'icon-user-female'
   },
-  // {
-  //   name: 'Testmonials',
-  //   url: '/theme/testimonials',
-  //   icon: 'icon-star'
-  // },
-  // {
-  //   title: true,
-  //   name: 'Components'
-  // },
+  {
+    name: 'Mind Body Coupons',
+     url: '/widgets',
+    icon: 'icon-calculator',
+  },
   {
     name: 'Reports',
     url: '/base',
@@ -170,15 +158,7 @@ export const navItems = [
   //   ]
   // },
   
-  // {
-  //   name: 'Widgets',
-  //   url: '/widgets',
-  //   icon: 'icon-calculator',
-  //   badge: {
-  //     variant: 'info',
-  //     text: 'NEW'
-  //   }
-  // },
+
   // {
   //   divider: true
   // },
