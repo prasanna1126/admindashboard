@@ -9,28 +9,28 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Buttons'
+      title: 'Refferal Rewards'
     },
     children: [
       {
         path: 'user-activities',
         component: ButtonsComponent,
         data: {
-          title: 'Buttons'
+          title: 'User-Activities'
         }
       },
       {
         path: 'user-history',
         component: DropdownsComponent,
         data: {
-          title: 'Dropdowns'
+          title: 'User-History'
         }
       },
       {
         path: 'perks',
         component: BrandButtonsComponent,
         data: {
-          title: 'Brand buttons'
+          title: 'Perks'
         }
       }
     ]

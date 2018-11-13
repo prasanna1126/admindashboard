@@ -1,6 +1,6 @@
 <app-header
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/brand/beauty-pass-app-logo.png', width: 89, height: 25, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
@@ -9,20 +9,20 @@
       <a class="nav-link" href="#">Dashboard</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Beauty-Tips</a>
+      <a class="nav-link" routerLink="/theme/beauty-tips">Beauty-Tips</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Testmonials</a>
+      <a class="nav-link" routerLink="/testmonials/written">Testmonials</a>
     </li>
     <li class="nav-item px-3">
       <a class="nav-link" href="#">Reports</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Refferal Rewards</a>
+      <a class="nav-link" routerLink="/refferal-rewards/user-activities">Refferal Rewards</a>
     </li>
   </ul>
-  <ul class="nav navbar-nav ml-auto">
-    <li class="nav-item d-md-down-none">
+  <ul class="nav navbar-nav ml-auto" style="visibility:hidden">
+   <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
     </li>
     <li class="nav-item d-md-down-none">
@@ -64,7 +64,7 @@
     <ol class="breadcrumb">
       <app-breadcrumb></app-breadcrumb>
       <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none">
+      <li class="breadcrumb-menu d-md-down-none" style="visibility:hidden">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
           <a class="btn" href="#"><i class="icon-speech"></i></a>
           <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
