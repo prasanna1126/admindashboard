@@ -1,4 +1,4 @@
-<div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-danger" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,17 +12,17 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Close</button>
-        <button type="button" class="btn btn-danger" (click)="deletePromotionValue();dangerModal.hide()">Delete</button>
+        <button type="button" class="btn btn-danger" (click)="dangerModal.hide();delete();">Delete</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div> -->
 <div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Edit Testmonails</h4>
         <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -32,7 +32,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <strong>Basic Form</strong> Elements
+                <strong>Basic Form</strong>
               </div>
               <div class="card-body">
                 <form  class="form-horizontal">
@@ -100,11 +100,14 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData)" >Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();" >Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div *ngFor="let alert of alertsDismiss">
+   <b><alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert></b> 
+  </div>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
@@ -139,7 +142,7 @@
                 <td>{{item.rating_4}}</td>
                 <td>{{item.rating_5}}</td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                 No Records Found
@@ -156,4 +159,5 @@
     </div>
     <!--/.col-->
   </div>
+  
 </div>

@@ -36,21 +36,36 @@ updatePromotion(val) {
 delatePromotion(val) {
   console.log(val)
   var data = {
-    comments: val.comments,
-    fullname: val.fullname,
-    rating_1: val.rating_1,
-    rating_2: val.rating_2,
-    rating_3: val.rating_3,
-    rating_4: val.rating_4,
-    rating_5: val.rating_5,
-    recomment:val.recomment,
-    status: 0,
-    testimonial_createddate: val.testimonial_createddate,
     testimonial_id: val.testimonial_id,
-    testimonial_modifydate: val.testimonial_modifydate,
-    uploadpic: val.uploadpic,
-    user_id: val.user_id
+    description: val.description,
+    video: val.video,
+    user_id: val.user_id,
+    likes: val.likes,
+    video_thumbnail: val.video_thumbnail,
+    rec_status: 0
   }
   this.service.editVideoTestmonials(data).subscribe();
+  this.delete();
+  this.categorysData=[];
+  this.service.getVideoTestmonials().subscribe(response => {
+    this.categorysData = response.json().data;
+    console.log(this.categorysData)
+  });
+
+}
+alertsDismiss: any = [];
+add(): void {
+  this.alertsDismiss.push({
+    type: 'info',
+    msg: `Updated Sucessfully!`,
+    timeout: 5000
+  });
+}
+delete(): void {
+  this.alertsDismiss.push({
+    type: 'danger',
+    msg: `Deleted Sucessfully!`,
+    timeout: 5000
+  });
 }
 }
