@@ -8,10 +8,17 @@ import { TestimonialsComponent } from './testimonials.component';
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
 
+import { FormsModule } from '@angular/forms';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+// Dropdowns Component
+
+
 @NgModule({
   imports: [
     CommonModule,
-    ThemeRoutingModule
+    ThemeRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [
     BeautyTipsComponent,
