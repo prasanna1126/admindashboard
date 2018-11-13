@@ -9,7 +9,7 @@ import { TestimonialsComponent } from './testimonials.component';
 import { ThemeRoutingModule } from './theme-routing.module';
 
 import { FormsModule } from '@angular/forms';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 // Dropdowns Component
 
@@ -18,7 +18,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     ThemeRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule.forRoot(),
+    FormsModule
   ],
   declarations: [
     BeautyTipsComponent,
