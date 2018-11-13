@@ -18,4 +18,10 @@ export class RefferalRewardsService {
   public getMindBodyCoupons() {
     return this.http.get(environment.host + 'mindbody-coupons');
   }
+  public getUserlistForHistory() {
+    return this.http.get(environment.host + 'user_rewards');
+  }
+  public getUserRewardHistory(id:number) {
+    return this.http.get(environment.host + 'reward_histories/' +id);
+  }
 }

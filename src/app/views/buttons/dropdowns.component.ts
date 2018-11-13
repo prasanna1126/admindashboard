@@ -1,41 +1,125 @@
-import { Component } from '@angular/core';
+import { Component, SecurityContext, ViewEncapsulation,OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AlertConfig } from 'ngx-bootstrap/alert';
+import { Router } from '@angular/router';
+import { RefferalRewardsService } from '../../services/refferal-rewards.service';
+
+// such override allows to keep some initial values
+
+export function getAlertConfig(): AlertConfig {
+  return Object.assign(new AlertConfig(), { type: 'success' });
+}
 
 @Component({
   templateUrl: 'dropdowns.component.html',
-  styleUrls: ['dropdowns.component.css']
+  styleUrls: ['dropdowns.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  styles: [
+    `
+  .alert-md-local {
+    background-color: #009688;
+    border-color: #00695C;
+    color: #fff;
+  }
+  `
+  ],
+  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
 export class DropdownsComponent {
-
-  status: { isOpen: boolean } = { isOpen: false };
-  disabled: boolean = false;
-  isDropup: boolean = true;
-  autoClose: boolean = false;
-
-  constructor() { }
-
-  items: string[] = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
+  userId:number;
+  tableStatus=false;
+  alerts: any[] = [{
+    type: 'success',
+    msg: `Testmonial Details Updated Successfully`,
+    timeout: 5000
+  }];
+  totalItems: number;
+  categorysData: any;
+  categorysDataUsers:any;
+  editData: any = [];
+  bigCurrentPage: number = 1;
+  constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+    this.alertsHtml = this.alertsHtml.map((alert: any) => ({
+      type: alert.type,
+      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
+    }));
+   }
+   ngOnInit() {
+    this.service.getUserlistForHistory().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData)
+    });
+  
+  }
+   alertsHtml: any = [
+    {
+      type: 'success',
+      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
+    },
+    {
+      type: 'info',
+      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
+    },
+    {
+      type: 'danger',
+      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
+    }
   ];
-
-  onHidden(): void {
-    console.log('Dropdown is hidden');
+  editPromotion(data, index) {
+    data.index = index;
+    this.editData = data;
+    this.totalItems=this.editData.length;
+    console.log(this.editData.length)
   }
-  onShown(): void {
-    console.log('Dropdown is shown');
+  updatePromotion(val) {
+    console.log(val)
+    var data = {
+      comments: val.comments,
+      rating_1: val.rating_1,
+      rating_2: val.rating_2,
+      rating_3: val.rating_3,
+      rating_4: val.rating_4,
+      rating_5: val.rating_5,
+      recomment:val.recomment,
+      status: val.status,
+      uploadpic: val.uploadpic,
+      user_id: val.user_id
+    }
+    //this.service.editWrittenTestmonials(data).subscribe();
+    this.alerts.push({
+      type: 'success',
+      msg: `Testmonial Details Updated Successfully`,
+      timeout: 5000
+    });
   }
-  isOpenChange(): void {
-    console.log('Dropdown state is changed');
+  delatePromotion(val) {
+    console.log(val)
+    var data = {
+      comments: val.comments,
+      fullname: val.fullname,
+      rating_1: val.rating_1,
+      rating_2: val.rating_2,
+      rating_3: val.rating_3,
+      rating_4: val.rating_4,
+      rating_5: val.rating_5,
+      recomment:val.recomment,
+      status: 0,
+      testimonial_createddate: val.testimonial_createddate,
+      testimonial_id: val.testimonial_id,
+      testimonial_modifydate: val.testimonial_modifydate,
+      uploadpic: val.uploadpic,
+      user_id: val.user_id
+    }
+    //this.service.editWrittenTestmonials(data).subscribe();
   }
-
-  toggleDropdown($event: MouseEvent): void {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.status.isOpen = !this.status.isOpen;
-  }
-
-  change(value: boolean): void {
-    this.status.isOpen = value;
+  setUserId(){
+    this.categorysDataUsers=[];
+    this.userId;
+    console.log(this.userId)
+    this.tableStatus=true;
+    this.service.getUserRewardHistory(this.userId).subscribe(response => {
+      this.categorysDataUsers = response.json().data;
+      console.log(this.categorysDataUsers)
+    });
   }
 }
