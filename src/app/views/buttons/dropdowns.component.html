@@ -1,8 +1,8 @@
 <div class="form-group row">
-  <label class="col-md-3 col-form-label" for="select2"><b>Select User ID</b></label>
+  <label class="col-md-3 col-form-label" for="select2"><b>Select User</b></label>
   <div class="col-md-4">
       <select name="userId" class="form-control" (ngModelChange)="setUserId($event)" [(ngModel)]="userId">
-          <option *ngFor="let data2 of this.categorysData" [ngValue]="data2.user_id">{{data2.user_id}}</option>
+          <option *ngFor="let data2 of this.categorysData" [ngValue]="data2.mindbody_id">{{data2.fullname}}({{data2.mindbody_id}})</option>
         </select>
     <!-- <select id="select2" name="select2" class="form-control form-control-lg">
       <option value="0">Please select</option>

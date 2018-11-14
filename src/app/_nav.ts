@@ -49,7 +49,7 @@ export const navItems = [
     ]
   },
   {
-    name: 'Beauty-Tips',
+    name: 'Beauty Tips',
     url: '/theme/beauty-tips',
     icon: 'icon-user-female'
   },

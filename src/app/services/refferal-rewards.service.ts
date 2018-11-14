@@ -19,7 +19,7 @@ export class RefferalRewardsService {
     return this.http.get(environment.host + 'mindbody-coupons');
   }
   public getUserlistForHistory() {
-    return this.http.get(environment.host + 'user_rewards');
+    return this.http.get(environment.host + 'get_users_list');
   }
   public getUserRewardHistory(id:number) {
     return this.http.get(environment.host + 'reward_histories/' +id);
