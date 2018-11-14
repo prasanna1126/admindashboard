@@ -2,27 +2,27 @@ export const navItems = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    icon: 'icon-speedometer'
+    icon: 'icon-home'
   },
   {
     name: 'Users',
     url: '/users-list',
-   icon: 'icon-pie-chart'
+   icon: 'icon-people'
  },
   {
     name: 'Testmonials',
     url: '/testmonials',
-   icon: 'icon-bell',
+   icon: 'icon-note',
     children: [
       {
         name: 'Written Testmonials',
        url: '/testmonials/written',
-       icon: 'icon-bell'
+       icon: 'icon-note'
      },
       {
        name: 'Video Testmonials',
         url: '/testmonials/video',
-         icon: 'icon-bell'
+         icon: 'icon-note'
       },
     ]
    },
@@ -56,68 +56,68 @@ export const navItems = [
   {
     name: 'Mind Body Coupons',
      url: '/mind-body-coupons',
-    icon: 'icon-calculator',
+    icon: 'icon-envelope-open',
   },
   {
     name: 'Reports',
     url: '/base',
-    icon: 'icon-note',
+    icon: 'icon-file',
     children: [
-      {
-        name: 'Cards',
-        url: '/base/cards',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Carousels',
-        url: '/base/carousels',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Collapses',
-        url: '/base/collapses',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Forms',
-        url: '/base/forms',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Pagination',
-        url: '/base/paginations',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Popovers',
-        url: '/base/popovers',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Progress',
-        url: '/base/progress',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Switches',
-        url: '/base/switches',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tables',
-        url: '/base/tables',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tabs',
-        url: '/base/tabs',
-        icon: 'icon-puzzle'
-      },
-      {
-        name: 'Tooltips',
-        url: '/base/tooltips',
-        icon: 'icon-puzzle'
-      }
+      // {
+      //   name: 'Cards',
+      //   url: '/base/cards',
+      //   icon: 'icon-file'
+      // },
+      // {
+      //   name: 'Carousels',
+      //   url: '/base/carousels',
+      //   icon: 'icon-file'
+      // },
+      // {
+      //   name: 'Collapses',
+      //   url: '/base/collapses',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Forms',
+      //   url: '/base/forms',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Pagination',
+      //   url: '/base/paginations',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Popovers',
+      //   url: '/base/popovers',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Progress',
+      //   url: '/base/progress',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Switches',
+      //   url: '/base/switches',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Tables',
+      //   url: '/base/tables',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Tabs',
+      //   url: '/base/tabs',
+      //   icon: 'icon-puzzle'
+      // },
+      // {
+      //   name: 'Tooltips',
+      //   url: '/base/tooltips',
+      //   icon: 'icon-puzzle'
+      // }
     ]
   },
  
