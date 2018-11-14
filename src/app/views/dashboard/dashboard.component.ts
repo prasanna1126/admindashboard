@@ -2,12 +2,78 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-
+import { DashboardService } from '../../services/dashboard.service';
+import {CommonModule} from '@angular/common';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-
+  userData: any;
+  tipsData: any;
+  activitiesData: any;
+  videoData: any;
+  writtenData: any;
+  mindBodyData: any;
+  recentUserData: any;
+  perksData: any;
+  userDataLength: number;
+  videoDatalength: number;
+  activitiesDataLength: number;
+  writtenDataLength: number;
+  tipsDataLength: number;
+  mindBodyDatalength: number;
+  perksDataLength: number;
+  actvitiesDataLength:number;
+  categorysData: any;
+  constructor(private service: DashboardService){
+  }
+  ngOnInit(){
+    // generate random values for mainChart
+    for (let i = 0; i <= this.mainChartElements; i++) {
+      this.mainChartData1.push(this.random(50, 200));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData3.push(65);
+    }
+   this.service.getUsersList().subscribe(response => {
+    this.userData = response.json().data;
+    this.userDataLength=this.userData.length
+    console.log(this.userData.length);
+  }); 
+  this.service.getRecentUsersList().subscribe(response => {
+    this.categorysData = response.json().data;
+    //console.log(this.recentUserData.length);
+  }); 
+  this.service.getBeautyTipsList().subscribe(response => {
+    this.tipsData = response.json().data;
+   this.tipsDataLength= this.tipsData.length
+    console.log(this.tipsData.length);
+  }); 
+  this.service.getUserActivitiesList().subscribe(response => {
+    this.activitiesData = response.json().data;
+    this.activitiesDataLength=this.activitiesData.length;
+    console.log(this.activitiesData.length);
+  }); 
+  this.service.getVideoTestmonials().subscribe(response => {
+    this.videoData = response.json().data;
+    this.videoDatalength=this.videoData.length;
+    console.log(this.videoData.length);
+  }); 
+  this.service.getWrittenTestmonials().subscribe(response => {
+    this.writtenData = response.json().data;
+    this.writtenDataLength = this.writtenData.length
+    console.log(this.writtenData.length);
+  }); 
+  this.service.getMindBodyCoupons().subscribe(response => {
+    this.mindBodyData = response.json().data;
+    this.mindBodyDatalength = this.mindBodyData.length
+    console.log(this.mindBodyData.length);
+  }); 
+  this.service.getPerksList().subscribe(response => {
+    this.perksData = response.json().data;
+    this.perksDataLength =this.perksData.length
+    console.log(this.perksData.length);
+  });
+  }
   radioModel: string = 'Month';
 
   // lineChart1
@@ -378,12 +444,5 @@ export class DashboardComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  ngOnInit(): void {
-    // generate random values for mainChart
-    for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData3.push(65);
-    }
-  }
+  
 }
