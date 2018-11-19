@@ -11,7 +11,7 @@ import { DropdownsComponent } from './dropdowns.component';
 
 // Buttons Routing
 import { ButtonsRoutingModule } from './buttons-routing.module';
-
+import { ModalModule } from "ngx-bootstrap";
 // Angular
 
 @NgModule({
@@ -20,6 +20,7 @@ import { ButtonsRoutingModule } from './buttons-routing.module';
     ButtonsRoutingModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     FormsModule
   ],
   declarations: [
