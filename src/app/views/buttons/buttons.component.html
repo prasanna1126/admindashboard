@@ -15,33 +15,27 @@
               <div class="card-header">
                 <strong>Edit User Activities</strong> 
               </div>
+
               <div class="card-body">
                 <form  class="form-horizontal">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">User Name</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Name</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="fullname" class="form-control" placeholder="Text" [(ngModel)]="editData.fullname" disabled>
+                      <input type="text" maxlength="50"  name="activity_name" class="form-control" placeholder="Text" [(ngModel)]="editData.activity_name">
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Description</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Points</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="description" class="form-control" placeholder="Text" [(ngModel)]="editData.description">
+                      <input type="text" maxlength="50"  name="activity_points" class="form-control" placeholder="Text" [(ngModel)]="editData.activity_points">
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Likes	</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Description	</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="likes" class="form-control" placeholder="Text" [(ngModel)]="editData.likes" disabled>
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Video Link</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="video" class="form-control" placeholder="Text" [(ngModel)]="editData.video">
+                      <input type="text" maxlength="50"  name="activity_desc" class="form-control" placeholder="Text" [(ngModel)]="editData.activity_desc" >
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
@@ -58,7 +52,9 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+<div *ngFor="let alert of alertsDismiss">
+  <b><alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert></b> 
+ </div>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
@@ -87,7 +83,7 @@
                 <td>{{item.activity_start_date | date: 'dd/MM/yyyy'}}</td>
                 <td>{{item.activity_end_date | date: 'dd/MM/yyyy'}}</td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                 No Records Found
