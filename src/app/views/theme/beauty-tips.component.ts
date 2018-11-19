@@ -50,11 +50,17 @@ export class BeautyTipsComponent implements OnInit {
     }));
    }
    ngOnInit() {
+    setInterval(() => {
+     this.getList();
+      }, 2000);
+    
+  
+  }
+  getList(){
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
-  
   }
    alertsHtml: any = [
     {
