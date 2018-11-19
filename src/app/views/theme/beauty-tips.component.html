@@ -111,7 +111,7 @@
                       <th>Video</th>
                       <th>Status</th>
                       <th>Edit</th>
-                      <th>Delate</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -122,7 +122,7 @@
                       <td>{{item.tip_video}}</td>
                       <td>{{item.rec_status}}</td>
                       <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                      <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                      <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
                     </tr>
                     <tr *ngIf="!categorysData || categorysData.length ==0">
                       No Records Found

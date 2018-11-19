@@ -15,7 +15,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Edit</th>
-                <th>Delate</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                 <td>{{item.rewardpoint_start_date | date: 'dd/MM/yyyy'}}</td>
                 <td>{{item.rewardpoint_end_date | date: 'dd/MM/yyyy'}}</td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                 No Records Found

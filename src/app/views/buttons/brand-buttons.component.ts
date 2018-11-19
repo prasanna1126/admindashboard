@@ -90,7 +90,7 @@ export class BrandButtonsComponent implements OnInit {
       timeout: 5000
     });
   }
-  delatePromotion(val) {
+  DeletePromotion(val) {
     console.log(val)
     var data = {
       comments: val.comments,

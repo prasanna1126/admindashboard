@@ -33,7 +33,7 @@ updatePromotion(val) {
   }
   this.service.editVideoTestmonials(data).subscribe();
 }
-delatePromotion(val) {
+DeletePromotion(val) {
   console.log(val)
   var data = {
     testimonial_id: val.testimonial_id,

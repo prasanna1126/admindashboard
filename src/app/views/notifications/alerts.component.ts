@@ -91,7 +91,7 @@ updatePromotion(val) {
     timeout: 5000
   });
 }
-delatePromotion(val) {
+DeletePromotion(val) {
   console.log(val)
   var data = {
     testimonial_id: val.testimonial_id,

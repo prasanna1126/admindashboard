@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure to Delate ?</p>
+        <p>Are you sure to Delete ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Close</button>
@@ -96,7 +96,7 @@
                 <th>Likes</th>
                 <th>Video Link</th>
                 <th>Edit</th>
-                <th>Delate</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -106,7 +106,7 @@
                 <td>{{item.likes}}</td>
                 <td>{{item.video}}</td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                   No Records Found
