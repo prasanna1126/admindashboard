@@ -11,6 +11,7 @@ import { ThemeRoutingModule } from './theme-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AlertModule } from 'ngx-bootstrap';
 // Dropdowns Component
 
 
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ThemeRoutingModule,
     NgxPaginationModule,
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     FormsModule
   ],
   declarations: [

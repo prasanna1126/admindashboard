@@ -30,8 +30,8 @@
                 <th>Reffer By </th>
                 <th>Reffer By Name</th>
                 <th>Reffer Description </th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <!-- <th>Edit</th>
+                <th>Delete</th> -->
               </tr>
             </thead>
             <tbody>
@@ -43,8 +43,8 @@
                 <td>{{item.refer_by}}</td>
                 <td>{{item.refer_by_name}}</td>
                 <td>{{item.refer_desc}}</td>
-                <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <!-- <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td> -->
               </tr>
               <tr *ngIf="!categorysData || categorysDataUsers.length ==0">
                 No Records Found

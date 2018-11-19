@@ -64,48 +64,57 @@ export class BeautyTipsComponent implements OnInit {
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
-    this.totalItems=this.editData.length;
-    console.log(this.editData.length)
+    console.log(this.editData)
   }
   updatePromotion(val) {
     console.log(val)
     var data = {
-      comments: val.comments,
-      rating_1: val.rating_1,
-      rating_2: val.rating_2,
-      rating_3: val.rating_3,
-      rating_4: val.rating_4,
-      rating_5: val.rating_5,
-      recomment:val.recomment,
-      status: val.status,
-      uploadpic: val.uploadpic,
-      user_id: val.user_id
+      tip_id: val.tip_id,
+      tip_title: val.tip_title,
+      tip_description: val.tip_description,
+      profile_name: val.profile_name,
+      rec_status:val.rec_status
     }
-    //this.service.editWrittenTestmonials(data).subscribe();
-    this.alerts.push({
-      type: 'success',
-      msg: `Testmonial Details Updated Successfully`,
-      timeout: 5000
-    });
+    this.service.editBeautyTip(data).subscribe();
   }
   DeletePromotion(val) {
     console.log(val)
     var data = {
-      comments: val.comments,
-      fullname: val.fullname,
-      rating_1: val.rating_1,
-      rating_2: val.rating_2,
-      rating_3: val.rating_3,
-      rating_4: val.rating_4,
-      rating_5: val.rating_5,
-      recomment:val.recomment,
-      status: 0,
-      testimonial_createddate: val.testimonial_createddate,
-      testimonial_id: val.testimonial_id,
-      testimonial_modifydate: val.testimonial_modifydate,
-      uploadpic: val.uploadpic,
-      user_id: val.user_id
+      tip_id: val.tip_id,
+      tip_title: val.tip_title,
+      tip_description: val.tip_description,
+      profile_name: val.profile_name,
+      rec_status:0
     }
-    //this.service.editWrittenTestmonials(data).subscribe();
+    this.service.editBeautyTip(data).subscribe();
+    this.delete();
+    this.categorysData=[];
+    this.service.getBeautyTipsList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData)
+    });
+  
+  }
+  alertsDismiss: any = [];
+  add(): void {
+    this.alertsDismiss.push({
+      type: 'info',
+      msg: `Updated Sucessfully!`,
+      timeout: 5000
+    });
+  }
+  addCreate(): void {
+    this.alertsDismiss.push({
+      type: 'info',
+      msg: `Created Sucessfully!`,
+      timeout: 5000
+    });
+  }
+  delete(): void {
+    this.alertsDismiss.push({
+      type: 'danger',
+      msg: `Deleted Sucessfully!`,
+      timeout: 5000
+    });
   }
 }

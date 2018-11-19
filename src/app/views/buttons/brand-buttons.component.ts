@@ -74,9 +74,15 @@ export class BrandButtonsComponent implements OnInit {
       rewardpoint_id: val.rewardpoint_id,
       rewardpoint_name: val.rewardpoint_name,
       rewardpoint_amount: val.rewardpoint_amount,
-      rewardpoint_status:val.rewardpoint_status
+      rewardpoint_status: 1
     }
-    this.service.editUserActivitiesList(data).subscribe();
+    console.log(data)
+    this.service.editPerksList(data).subscribe();
+    this.categorysData=[];
+    this.service.getPerksList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData)
+    });
   }
   DeletePromotion(val) {
     console.log(val)
@@ -86,7 +92,7 @@ export class BrandButtonsComponent implements OnInit {
       rewardpoint_amount: val.rewardpoint_amount,
       rewardpoint_status:0
     }
-    this.service.editUserActivitiesList(data).subscribe();
+    this.service.editPerksList(data).subscribe();
     this.delete();
     this.categorysData=[];
     this.service.getPerksList().subscribe(response => {
@@ -100,6 +106,13 @@ export class BrandButtonsComponent implements OnInit {
     this.alertsDismiss.push({
       type: 'info',
       msg: `Updated Sucessfully!`,
+      timeout: 5000
+    });
+  }
+  addCreate(): void {
+    this.alertsDismiss.push({
+      type: 'info',
+      msg: `Created Sucessfully!`,
       timeout: 5000
     });
   }

@@ -1,17 +1,70 @@
 <div class="card-body">
     <div class="row">
       <div class="col-6 col-sm-4 col-md text-center">
-        <button type="button" (click)="largeModal.show()" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create Tip</button>
+        <button type="button" (click)="largeModalCreate.show()" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create Tip</button>
       </div>
       
     </div>
   </div>
-  <div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div bsModal #largeModalCreate="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Create Beauty Tip</h4>
+        <button type="button" class="close" (click)="largeModalCreate.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <strong>Create Beauty Tip</strong>
+              </div>
+              <div class="card-body">
+                <form  class="form-horizontal">
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Tip Name</label>
+                    <div class="col-md-9">
+                      <input type="text" maxlength="50"  name="tip_title" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_title" >
+                      <!-- <span class="help-block">This is a help text</span> -->
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Description</label>
+                    <div class="col-md-9">
+                      <input type="text" maxlength="50"  name="tip_description" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_description">
+                      <!-- <span class="help-block">This is a help text</span> -->
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Image</label>
+                    <div class="col-md-9">
+                      <input type="text" maxlength="50"  name="tip_img" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_img">
+                      <!-- <span class="help-block">This is a help text</span> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="largeModalCreate.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModalCreate.hide();addCreate();" >Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Beauty Tip</h4>
         <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,63 +74,28 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <strong>Basic Form</strong>
+                <strong>Edit Beauty Tip</strong>
               </div>
               <div class="card-body">
                 <form  class="form-horizontal">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">User Name</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Tip Name</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="fullname" class="form-control" placeholder="Text" [(ngModel)]="editData.fullname" disabled>
+                      <input type="text" maxlength="50"  name="tip_title" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_title" >
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Comments</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Description</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="comments" class="form-control" placeholder="Text" [(ngModel)]="editData.comments">
+                      <input type="text" maxlength="50"  name="tip_description" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_description">
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Recomment</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Image</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="recomment" class="form-control" placeholder="Text" [(ngModel)]="editData.recomment">
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_1</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rating_1" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_1">
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_2</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rating_2" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_2">
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_3</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rating_3" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_3">
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_4</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rating_4" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_4">
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_5</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rating_5" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_5">
+                      <input type="text" maxlength="50"  name="tip_img" class="form-control" placeholder="Text" [(ngModel)]="editData.tip_img">
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
@@ -94,6 +112,9 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div *ngFor="let alert of alertsDismiss">
+  <b><alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert></b> 
+ </div>
 <div class="animated fadeIn">
         <div class="row">
           <div class="col-lg-12">
@@ -122,7 +143,7 @@
                       <td>{{item.tip_video}}</td>
                       <td>{{item.rec_status}}</td>
                       <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                      <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                      <td> <button class="btn-danger"  data-toggle="modal"(click)="DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
                     </tr>
                     <tr *ngIf="!categorysData || categorysData.length ==0">
                       No Records Found
