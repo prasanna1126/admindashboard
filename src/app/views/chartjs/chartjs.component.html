@@ -13,8 +13,7 @@
                 <th>Email ID</th>
                 <th>Mobile</th>
                 <th>Gender</th>
-                <th>Edit</th>
-                <th>Delate</th>
+                <th>Mind Body Id</th>
               </tr>
             </thead>
             <tbody>
@@ -23,8 +22,7 @@
                 <td>{{item.email_id}}</td>
                 <td>{{item.mobile}}</td>
                 <td>{{item.gender}}</td>
-                <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();delatePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
+                <td>{{item.mindbody_id}}</td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                 No Records Found
