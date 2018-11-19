@@ -34,6 +34,15 @@ export class BeautyTipsComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  currentImage: any = '';
+  bankuploadedFiles: any;
+  myFiles: string[] = [];
+  bankstmtImage: number = 0;
+  data = [];
+  uploadedFiles: any[] = [];
+  userImageName = '';
+  userimagePreview: any;
+  userImage: string;
   constructor(private router: Router,private service: BeautyTipsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -72,10 +81,21 @@ export class BeautyTipsComponent implements OnInit {
       tip_id: val.tip_id,
       tip_title: val.tip_title,
       tip_description: val.tip_description,
-      profile_name: val.profile_name,
+      tip_img:this.userImage,
+      tip_category:1,
+      profile_name:this.userImageName,
       rec_status:val.rec_status
     }
     this.service.editBeautyTip(data).subscribe();
+    this.categorysData=[];
+    this.service.getBeautyTipsList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData);
+    });
+    this.editData=[];
+    this.userimagePreview='';
+    this.userImageName='';
+    this.userImage='';
   }
   DeletePromotion(val) {
     console.log(val)
@@ -116,5 +136,46 @@ export class BeautyTipsComponent implements OnInit {
       msg: `Deleted Sucessfully!`,
       timeout: 5000
     });
+  }
+  getFileDetails(event, text1) {
+    this.currentImage = text1;
+    console.log(this.currentImage);
+    var files = event.target.files;
+    var file = files[0];
+
+    for (var i = 0; i < files.length; i++) {
+      this.uploadedFiles = files.name;
+      console.log(this.uploadedFiles);
+    }
+
+    if (files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+    
+    if (event.target.files && event.target.files[0] && this.currentImage === 'p') {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.userImageName = file.name;
+      console.log(this.userImageName);
+      reader.onload = (event) => {
+        this.userimagePreview = event.target;
+      }
+    }
+   
+
+  }
+  //image base64 format
+  _handleReaderLoaded(readerEvt) {
+   
+
+    if (this.currentImage === 'p') {
+      var binaryString = readerEvt.target.result;
+      this.userImage = btoa(binaryString);
+      console.log("final"+this.userImage)
+    }
+    
+    this.currentImage = ''
   }
 }
