@@ -29,8 +29,11 @@ updatePromotion(val) {
     description: val.description,
     video: val.video,
     user_id: val.user_id,
+    likes: val.likes,
+    testimonial_id: val.testimonial_id,
     video_thumbnail: val.video_thumbnail
   }
+  console.log(data);
   this.service.editVideoTestmonials(data).subscribe();
 }
 DeletePromotion(val) {
