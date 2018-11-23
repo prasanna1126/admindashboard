@@ -38,6 +38,7 @@ export class DropdownsComponent {
   categorysDataUsers:any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  getValue: number;
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -112,12 +113,12 @@ export class DropdownsComponent {
     }
     //this.service.editWrittenTestmonials(data).subscribe();
   }
-  setUserId(){
-    this.categorysDataUsers=[];
-    this.userId;
-    console.log(this.userId)
+  setUserId(branch_id: any): void{
+    //this.categorysDataUsers=[];
+    this.userId = branch_id;
+    console.log(branch_id)
     this.tableStatus=true;
-    this.service.getUserRewardHistory(this.userId).subscribe(response => {
+    this.service.getUserRewardHistory(branch_id).subscribe(response => {
       this.categorysDataUsers = response.json().data;
       console.log(this.categorysDataUsers)
     });
