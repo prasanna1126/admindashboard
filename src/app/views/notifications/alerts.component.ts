@@ -34,6 +34,8 @@ export class AlertsComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  deleteConfirm: boolean;
+  deleteData: { testimonial_id: any; user_id: any; rating_1: any; rating_2: any; rating_3: any; rating_4: any; rating_5: any; comments: any; status: number; recomment: any; uploadpic: any; };
   constructor(private router: Router,private service: TestmonialsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -106,7 +108,11 @@ DeletePromotion(val) {
     recomment: val.recomment,
     uploadpic: val.uploadpic,
   }
-  this.service.editWrittenTestmonials(data).subscribe();
+  this.deleteData=data;
+}
+deleteAlert(){
+  this.deleteConfirm=true;
+  this.service.editWrittenTestmonials(this.deleteData).subscribe();
   this.delete();
   this.categorysData=[];
   this.service.getWrittenTestmonials().subscribe(response => {
