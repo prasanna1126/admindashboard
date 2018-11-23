@@ -8,6 +8,7 @@ export class BadgesComponent {
 
   categorysData: any;
   editData: any = []
+  deleteData: { testimonial_id: any; description: any; video: any; user_id: any; likes: any; video_thumbnail: any; rec_status: number; };
   constructor(private router: Router,private service: TestmonialsService) { }
   backToDashBoard() {
     this.router.navigate(['reports'])
@@ -47,14 +48,17 @@ DeletePromotion(val) {
     video_thumbnail: val.video_thumbnail,
     rec_status: 0
   }
-  this.service.editVideoTestmonials(data).subscribe();
+ 
+  this.deleteData=data;
+}
+deleteAlert(){
+  this.service.editVideoTestmonials(this.deleteData).subscribe();
   this.delete();
   this.categorysData=[];
   this.service.getVideoTestmonials().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData)
   });
-
 }
 alertsDismiss: any = [];
 add(): void {

@@ -34,6 +34,7 @@ export class ButtonsComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  deleteData: { activity_id: any; activity_name: any; activity_points: any; activity_desc: any; activity_status: number; };
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -86,14 +87,16 @@ export class ButtonsComponent implements OnInit {
       activity_desc: val.activity_desc,
       activity_status: 0
     }
-    this.service.editUserActivitiesList(data).subscribe();
+    this.deleteData=data;
+  }
+  deleteAlert(){
+    this.service.editUserActivitiesList(this.deleteData).subscribe();
     this.delete();
     this.categorysData=[];
     this.service.getUserActivitiesList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
-  
   }
   alertsDismiss: any = [];
   add(): void {

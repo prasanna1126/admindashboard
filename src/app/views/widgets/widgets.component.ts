@@ -34,6 +34,7 @@ export class WidgetsComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  deleteData: { coupons_id: any; coupons_for: any; coupons_number: any; coupons_status: number; };
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -84,15 +85,21 @@ export class WidgetsComponent implements OnInit {
       coupons_number: val.coupons_number,
       coupons_status: 0
     }
-    this.service.editMindBodyCoupons(data).subscribe();
-    this.delete();
-    this.categorysData=[];
-    this.service.getMindBodyCoupons().subscribe(response => {
-      this.categorysData = response.json().data;
-      console.log(this.categorysData)
-    });
+   
   
-  }
+  
+  this.deleteData=data;
+}
+deleteAlert(){
+  this.service.editMindBodyCoupons(this.deleteData).subscribe();
+  this.delete();
+  this.categorysData=[];
+  this.service.getMindBodyCoupons().subscribe(response => {
+    this.categorysData = response.json().data;
+    console.log(this.categorysData)
+  });
+
+}
   alertsDismiss: any = [];
   add(): void {
     this.alertsDismiss.push({

@@ -36,6 +36,7 @@ export class BrandButtonsComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
+  deleteData: { rewardpoint_id: any; rewardpoint_name: any; rewardpoint_amount: any; rewardpoint_status: number; };
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -92,7 +93,10 @@ export class BrandButtonsComponent implements OnInit {
       rewardpoint_amount: val.rewardpoint_amount,
       rewardpoint_status:0
     }
-    this.service.editPerksList(data).subscribe();
+    this.deleteData=data;
+  }
+  deleteAlert(){
+    this.service.editPerksList(this.deleteData).subscribe();
     this.delete();
     this.categorysData=[];
     this.service.getPerksList().subscribe(response => {

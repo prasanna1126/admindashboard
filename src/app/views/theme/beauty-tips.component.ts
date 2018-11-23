@@ -43,6 +43,7 @@ export class BeautyTipsComponent implements OnInit {
   userImageName = '';
   userimagePreview: any;
   userImage: string;
+  deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
   constructor(private router: Router,private service: BeautyTipsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -112,15 +113,18 @@ export class BeautyTipsComponent implements OnInit {
       profile_name: val.profile_name,
       rec_status:0
     }
-    this.service.editBeautyTip(data).subscribe();
+  this.deleteData=data;
+  }
+deleteAlert(){
+  this.service.editBeautyTip(this.deleteData).subscribe();
     this.delete();
     this.categorysData=[];
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
-  
-  }
+
+}
   alertsDismiss: any = [];
   add(): void {
     this.alertsDismiss.push({
